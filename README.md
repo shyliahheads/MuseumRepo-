@@ -1,8 +1,23 @@
 # Shop-Html-
-<!-- =============================== -->
-<!-- shop-template.html -->
-<!-- Souvenir Shop – Phase 1 -->
-<!-- =============================== -->
+<!-- ITEM 1 — COLLECTION ARTIFACT -->
+<div class="collection-item">
+
+    <img src="images/starbone-totem.jpg"
+         alt="Starbone Totem carved fossil replica"
+         class="open-modal"
+         data-modal-target="#modal-text-starbone">
+
+    <h3>Starbone Totem</h3>
+
+    <p>
+        Collection: Fossil Relics<br>
+        Material: Fossilized Bone & Resin<br>
+        Location Found: Abyssal Ridge<br>
+        Function: Ceremonial Marker
+    </p>
+
+</div>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -257,3 +272,4 @@ function closeModal() {
     document.getElementById("imgModal").style.display = "none";
 }
 
+    
