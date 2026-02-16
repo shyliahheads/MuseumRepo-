@@ -272,4 +272,163 @@ function closeModal() {
     document.getElementById("imgModal").style.display = "none";
 }
 
-    
+    <!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Museum Souvenir Shop</title>
+
+<style>
+body {
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:linear-gradient(135deg,#0c1b2a,#1e3c58);
+  color:white;
+}
+
+h1 { text-align:center; padding:20px; }
+
+nav {
+  background:#06121c;
+  padding:15px;
+  text-align:center;
+}
+
+nav a {
+  color:white;
+  text-decoration:none;
+  margin:0 15px;
+  font-weight:bold;
+}
+
+.shop-container {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:25px;
+  padding:30px;
+  max-width:1200px;
+  margin:auto;
+}
+
+.souvenir-item {
+  background:white;
+  color:black;
+  border-radius:12px;
+  padding:15px;
+  text-align:center;
+}
+
+.souvenir-item img {
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+.price {
+  font-weight:bold;
+  margin:10px 0;
+}
+
+button {
+  background:#0a5c91;
+  color:white;
+  border:none;
+  padding:10px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+.qty-badge {
+  display:block;
+  margin-bottom:8px;
+  font-weight:bold;
+}
+</style>
+
+</head>
+
+<body>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="collections.html">Collections</a>
+  <a href="shop.html">Shop</a>
+</nav>
+
+<h1>Museum Souvenir Shop</h1>
+
+<button onclick="location.href='cart.html'">
+View Cart
+</button>
+
+<div class="shop-container">
+
+<!-- ITEM 1 -->
+
+<div class="souvenir-item">
+
+<img src="../images/starbone-totem.jpg">
+
+<h3>Starbone Totem</h3>
+
+<div class="price">$24.99</div>
+
+<span class="qty-badge"></span>
+
+<button
+onclick="addToCart(this)"
+data-id="item001"
+data-name="Starbone Totem"
+data-price="24.99"
+data-image="../images/starbone-totem.jpg">
+Add to Cart </button>
+
+</div>
+
+</div>
+
+<script>
+
+const CART_KEY='museumCartV1';
+
+function readCart(){
+ try{
+  return JSON.parse(localStorage.getItem(CART_KEY))||[];
+ }catch{
+  return[];
+ }
+}
+
+function writeCart(cart){
+ localStorage.setItem(CART_KEY,JSON.stringify(cart));
+}
+
+function addToCart(btn){
+
+ const id=btn.dataset.id;
+ const name=btn.dataset.name;
+ const unitPrice=Number(btn.dataset.price);
+ const image=btn.dataset.image;
+
+ let cart=readCart();
+
+ const idx=cart.findIndex(it=>it.id===id);
+
+ if(idx>=0){
+  cart[idx].qty+=1;
+ }else{
+  cart.push({id,name,unitPrice,qty:1,image});
+ }
+
+ writeCart(cart);
+
+ alert(name+" added to cart");
+}
+
+</script>
+
+</body>
+</html>
+
